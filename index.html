@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Mthetheleli Ndlovu - Information Technology Student, IoT Developer and Football Player">
+    <meta name="theme-color" content="#0b1a2e">
+    <title>Mthetheleli Ndlovu | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+    :root {
+        --bg: #0b1a2e;
+        --bg-secondary: #0e1f33;
+        --panel: #13293f;
+        --panel-secondary: #0e2035;
+        --text: #ffffff;
+        --muted: #b8c9e0;
+        --gold: #d4af37;
+        --gold-light: #f5d76e;
+        --blue: #4a8af4;
+        --red: #b80000;
+        --border: rgba(212, 175, 55, 0.22);
+        --shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+        --radius: 20px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 82px;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body.modal-open {
+        overflow: hidden;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+        height: auto;
+    }
+
+    button,
+    input,
+    textarea {
+        font: inherit;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+    button {
+        cursor: pointer;
+        border: none;
+        background: none;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    ::selection {
+        background: var(--gold);
+        color: var(--bg);
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 20px;
+    }
+
+    .container {
+        width: min(1200px, calc(100% - 24px));
+        margin: auto;
+        padding: 0 6px;
+    }
+
+    section {
+        position: relative;
+        padding: 60px 0;
+        overflow: hidden;
+    }
+
+    section:nth-of-type(even),
+    #gallery {
+        background: var(--bg-secondary);
+    }
+
+    .skip-link {
+        position: fixed;
+        top: -100px;
+        left: 15px;
+        z-index: 100001;
+        padding: 10px 16px;
+        background: var(--gold);
+        color: var(--bg);
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .skip-link:focus {
+        top: 15px;
+    }
+
+    :focus-visible {
+        outline: 3px solid var(--gold-light);
+        outline-offset: 3px;
+    }
+
+    .reveal,
+    .reveal-left,
+    .reveal-right,
+    .reveal-scale {
+        opacity: 0;
+        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal {
+        transform: translateY(50px);
+    }
+
+    .reveal-left {
+        transform: translateX(-60px);
+    }
+
+    .reveal-right {
+        transform: translateX(60px);
+    }
+
+    .reveal-scale {
+        transform: scale(0.8);
+    }
+
+    .reveal.active,
+    .reveal-left.active,
+    .reveal-right.active,
+    .reveal-scale.active {
+        opacity: 1;
+        transform: none;
+    }
+
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        padding: 10px 0;
+        background: rgba(11, 26, 46, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 2px solid var(--gold);
+    }
+
+    nav .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--gold);
+        font-size: clamp(0.8rem, 2.5vw, 1.15rem);
+        font-weight: 800;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+    }
+
+    .logo span {
+        font-size: clamp(1rem, 3vw, 1.4rem);
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        list-style: none;
+    }
+
+    .nav-links a {
+        position: relative;
+        padding: 6px 0;
+        color: var(--muted);
+        font-size: clamp(0.7rem, 1.5vw, 0.88rem);
+        font-weight: 600;
+        transition: 0.25s;
+        white-space: nowrap;
+    }
+
+    .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+        color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 8px;
+        color: var(--gold);
+        background: transparent;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+    }
+
+    .hero {
+        min-height: calc(100vh - 65px);
+        display: flex;
+        align-items: center;
+        padding: 40px 0;
+        background:
+            radial-gradient(circle at 85% 20%, rgba(212, 175, 55, 0.12), transparent 35%),
+            linear-gradient(135deg, #0b1a2e, #102842);
+    }
+
+    .hero .container {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .hero-content h1 {
+        margin-bottom: 12px;
+        font-size: clamp(2rem, 6vw, 5.2rem);
+        line-height: 1.05;
+    }
+
+    .highlight {
+        color: var(--gold);
+    }
+
+    .iam {
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: clamp(0.95rem, 2vw, 1.25rem);
+        font-weight: 600;
+    }
+
+    .type-wrapper {
+        min-height: 30px;
+        margin-bottom: 12px;
+    }
+
+    .typing-demo {
+        display: inline-block;
+        padding-right: 5px;
+        color: var(--gold-light);
+        border-right: 2px solid var(--gold);
+        font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+        font-weight: 700;
+    }
+
+    .hero-content p {
+        max-width: 650px;
+        margin-bottom: 20px;
+        color: var(--muted);
+        font-size: clamp(0.85rem, 1.4vw, 1.05rem);
+    }
+
+    .btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 18px;
+        border-radius: 50px;
+        font-weight: 700;
+        transition: 0.3s;
+        font-size: clamp(0.8rem, 1.2vw, 1rem);
+        min-height: 44px;
+    }
+
+    .btn-primary {
+        color: var(--bg);
+        background: var(--gold);
+    }
+
+    .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-3px);
+    }
+
+    .btn-outline {
+        color: var(--gold);
+        border: 2px solid var(--gold);
+        background: transparent;
+    }
+
+    .btn-outline:hover {
+        color: var(--bg);
+        background: var(--gold);
+        transform: translateY(-3px);
+    }
+
+    .hero-image {
+        display: flex;
+        justify-content: center;
+    }
+
+    .profile-wrapper {
+        position: relative;
+        width: min(320px, 70vw);
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ring {
+        position: absolute;
+        inset: 4%;
+        border: 3px solid var(--gold);
+        border-radius: 50%;
+        animation: rotateRing 12s linear infinite;
+    }
+
+    .ring::before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        left: 50%;
+        width: 14px;
+        height: 14px;
+        background: var(--gold);
+        border-radius: 50%;
+        transform: translateX(-50%);
+    }
+
+    .ring-glow {
+        position: absolute;
+        inset: 8%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.24), transparent 65%);
+        filter: blur(15px);
+    }
+
+    .profile-pic,
+    .profile-fallback {
+        position: relative;
+        z-index: 2;
+        width: 78%;
+        border-radius: 50%;
+    }
+
+    .profile-pic {
+        height: 78%;
+        object-fit: cover;
+        border: 6px solid rgba(255, 255, 255, 0.08);
+        box-shadow: var(--shadow);
+    }
+
+    .profile-fallback {
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: var(--panel);
+        border: 3px solid var(--gold);
+        font-size: 3.5rem;
+    }
+
+    @keyframes rotateRing {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .section-title {
+        position: relative;
+        margin-bottom: 25px;
+        color: var(--text);
+        font-size: clamp(1.6rem, 4vw, 3rem);
+        line-height: 1.1;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 70px;
+        height: 4px;
+        margin-top: 10px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        border-radius: 50px;
+    }
+
+    .section-title-center {
+        text-align: center;
+    }
+
+    .section-title-center::after {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 35px;
+        align-items: center;
+    }
+
+    .about-text p {
+        margin-bottom: 14px;
+        color: var(--muted);
+        font-size: clamp(0.85rem, 1.2vw, 1rem);
+    }
+
+    .about-text strong {
+        color: var(--gold-light);
+    }
+
+    .about-details {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+    }
+
+    .about-details span {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 11px;
+        color: var(--muted);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        font-size: clamp(0.7rem, 1vw, 0.85rem);
+    }
+
+    .about-details i {
+        color: var(--gold);
+        width: 18px;
+        flex-shrink: 0;
+    }
+
+    .about-image-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .about-avatar,
+    .avatar-fallback {
+        width: min(350px, 100%);
+        aspect-ratio: 1;
+        border-radius: 50%;
+    }
+
+    .about-avatar {
+        object-fit: cover;
+        border: 5px solid var(--gold);
+        box-shadow: var(--shadow);
+    }
+
+    .avatar-fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: var(--panel);
+        border: 3px solid var(--gold);
+        font-size: 3.5rem;
+    }
+
+    .education-carousel {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .education-track {
+        display: flex;
+        gap: 15px;
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+        touch-action: pan-y;
+    }
+
+    .education-slide {
+        position: relative;
+        flex: 0 0 calc((100% - 30px) / 3);
+        min-height: 320px;
+        padding: 25px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+        border-radius: 18px;
+        transition: 0.35s;
+    }
+
+    .education-slide:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow);
+    }
+
+    .education-slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.12);
+    }
+
+    .slide-content {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+    }
+
+    .slide-sinqumeni {
+        background: linear-gradient(145deg, #ff4040, #b62020, #8b0000);
+        border: 2px solid #ff5555;
+    }
+
+    .slide-mabaso {
+        background: linear-gradient(145deg, #cc6a00, #ff8c00, #cc6a00);
+        border: 2px solid #ffa500;
+    }
+
+    .slide-university {
+        color: var(--bg);
+        background: linear-gradient(145deg, #e8e8e8, #ffffff, #e8e8e8);
+        border: 2px solid var(--gold);
+    }
+
+    .year {
+        margin-bottom: 4px;
+        color: #ffe08a;
+        font-weight: 700;
+        font-size: clamp(0.85rem, 1.2vw, 1rem);
+    }
+
+    .slide-university .year {
+        color: #a47c00;
+    }
+
+    .school-name {
+        margin-bottom: 4px;
+        font-size: clamp(1rem, 1.8vw, 1.35rem);
+        font-weight: 800;
+    }
+
+    .school-desc {
+        margin-bottom: 14px;
+        opacity: 0.85;
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+    }
+
+    .slide-image {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto;
+        object-fit: cover;
+        border: 4px solid rgba(255, 255, 255, 0.35);
+        border-radius: 16px;
+    }
+
+    .carousel-nav,
+    .carousel-dots {
+        display: flex;
+        justify-content: center;
+    }
+
+    .carousel-nav {
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .carousel-dots {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .carousel-btn {
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: transparent;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        transition: 0.25s;
+        font-size: 0.9rem;
+    }
+
+    .carousel-btn:hover {
+        color: var(--bg);
+        background: var(--gold);
+        transform: scale(1.05);
+    }
+
+    .carousel-dot {
+        width: 10px;
+        height: 10px;
+        padding: 0;
+        background: transparent;
+        border: 2px solid var(--gold);
+        border-radius: 50%;
+        transition: 0.25s;
+    }
+
+    .carousel-dot.active {
+        background: var(--gold);
+        transform: scale(1.25);
+    }
+
+    .football-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    .football-club {
+        padding: 20px;
+        background: linear-gradient(145deg, #8b0000, #cc0000, #700000);
+        border: 2px solid #ff3333;
+        border-radius: 16px;
+    }
+
+    .football-club h3,
+    .football-stats-box h3 {
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+    }
+
+    .football-club h3 {
+        color: #ffb0b0;
+    }
+
+    .football-club p {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        padding: 5px 0;
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+    }
+
+    .football-club p i {
+        width: 20px;
+        margin-top: 3px;
+        color: #ffcc80;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+    }
+
+    .football-stats-box {
+        padding: 20px;
+        background: linear-gradient(145deg, #0a1628, #1a3a6e, #0a1628);
+        border: 2px solid var(--blue);
+        border-radius: 16px;
+    }
+
+    .football-stats-box h3 {
+        color: var(--blue);
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .stat-item-blue {
+        padding: 10px;
+        text-align: center;
+        background: rgba(74, 138, 244, 0.1);
+        border: 1px solid rgba(74, 138, 244, 0.25);
+        border-radius: 10px;
+    }
+
+    .stat-item-blue .num {
+        color: var(--blue);
+        font-size: clamp(1.3rem, 2vw, 1.7rem);
+        font-weight: 800;
+    }
+
+    .stat-item-blue .label {
+        color: var(--muted);
+        font-size: clamp(0.6rem, 0.8vw, 0.72rem);
+    }
+
+    .football-media {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .football-images {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .football-img-circle {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border: 4px solid var(--gold);
+        border-radius: 50%;
+    }
+
+    .football-video-box {
+        aspect-ratio: 16 / 9;
+        overflow: hidden;
+        background: #050d17;
+        border: 2px solid #1a3a6e;
+        border-radius: 14px;
+        max-width: 100%;
+    }
+
+    .football-video-box video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .skills-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+
+    .skills-wrapper h3 {
+        margin-bottom: 16px;
+        font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    }
+
+    .skill-bar {
+        margin: 14px 0;
+    }
+
+    .skill-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        color: var(--muted);
+        font-size: clamp(0.8rem, 1vw, 0.9rem);
+        font-weight: 600;
+    }
+
+    .bar {
+        height: 8px;
+        overflow: hidden;
+        background: #1f3a5a;
+        border-radius: 20px;
+    }
+
+    .bar-fill {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        border-radius: 20px;
+        transition: width 1.2s ease;
+    }
+
+    .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .skill-tag {
+        padding: 7px 14px;
+        color: var(--muted);
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 50px;
+        transition: 0.3s;
+        font-size: clamp(0.75rem, 0.9vw, 0.9rem);
+    }
+
+    .skill-tag:hover {
+        color: var(--gold);
+        border-color: var(--gold);
+        transform: translateY(-3px);
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .card {
+        padding: 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+    }
+
+    .project-card {
+        transition: 0.35s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+    }
+
+    .project-card i {
+        margin-bottom: 12px;
+        color: var(--gold);
+        font-size: 1.8rem;
+    }
+
+    .project-card h3 {
+        margin-bottom: 6px;
+        font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    }
+
+    .project-card p {
+        color: var(--muted);
+        font-size: clamp(0.75rem, 1vw, 0.9rem);
+    }
+
+    .gallery-intro {
+        max-width: 650px;
+        margin: -10px auto 25px;
+        color: var(--muted);
+        text-align: center;
+        font-size: clamp(0.85rem, 1.2vw, 1rem);
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .gallery-card {
+        position: relative;
+        overflow: hidden;
+        min-width: 0;
+        background: var(--panel-secondary);
+        border: 2px solid rgba(212, 175, 55, 0.18);
+        border-radius: 18px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.22);
+        animation: galleryCardIn 0.65s ease both;
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .gallery-card:hover,
+    .gallery-card:focus-visible {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+        box-shadow: 0 22px 55px rgba(0, 0, 0, 0.38), 0 0 30px rgba(212, 175, 55, 0.1);
+    }
+
+    @keyframes galleryCardIn {
+        from {
+            opacity: 0;
+            transform: translateY(25px) scale(0.97);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    .cover-image {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        background: linear-gradient(135deg, #13293f, #07121f);
+    }
+
+    .cover-image > img {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+        transition: transform 0.55s ease, filter 0.35s ease;
+    }
+
+    .gallery-card:hover .cover-image > img,
+    .gallery-card:focus-visible .cover-image > img {
+        transform: scale(1.08);
+        filter: brightness(0.9);
+    }
+
+    .cover-image::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.02) 0%,
+            rgba(0, 0, 0, 0.18) 35%,
+            rgba(0, 0, 0, 0.9) 100%
+        );
+    }
+
+    .cover-fallback {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        color: var(--gold);
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.12), transparent 65%);
+        text-align: center;
+    }
+
+    .cover-fallback i {
+        font-size: 2.5rem;
+    }
+
+    .cover-fallback strong {
+        color: #ffffff;
+        font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    }
+
+    .cover-fallback small {
+        color: var(--muted);
+        font-size: 0.7rem;
+    }
+
+    .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 16px;
+        pointer-events: none;
+    }
+
+    .gallery-icon {
+        margin-bottom: 4px;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        line-height: 1;
+    }
+
+    .category-name {
+        color: #ffffff;
+        font-size: clamp(1rem, 1.8vw, 1.35rem);
+        font-weight: 800;
+        line-height: 1.2;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.65);
+    }
+
+    .photo-count {
+        margin-top: 2px;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(0.7rem, 0.9vw, 0.85rem);
+    }
+
+    .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 3;
+        width: 55px;
+        height: 55px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        background: rgba(7, 18, 31, 0.68);
+        border: 2px solid rgba(255, 255, 255, 0.85);
+        border-radius: 50%;
+        font-size: 1.4rem;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: 0.3s;
+    }
+
+    .gallery-card:hover .play-icon,
+    .gallery-card:focus-visible .play-icon {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    .card-footer {
+        min-height: 54px;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--panel-secondary);
+    }
+
+    .card-footer .label {
+        color: #ffffff;
+        font-size: clamp(0.8rem, 1.1vw, 0.95rem);
+        font-weight: 700;
+    }
+
+    .badge {
+        min-width: 28px;
+        padding: 3px 8px;
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50px;
+        font-size: 0.7rem;
+        font-weight: 800;
+        text-align: center;
+    }
+
+    .gallery-status {
+        margin-top: 16px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 0.85rem;
+    }
+
+    .gallery-status.hidden {
+        display: none;
+    }
+
+    .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 12px 70px;
+        background: rgba(2, 8, 16, 0.97);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .modal.active {
+        display: flex;
+        animation: modalFade 0.25s ease;
+    }
+
+    @keyframes modalFade {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .modal-content {
+        max-width: min(1000px, 92vw);
+        max-height: 70vh;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        border: 3px solid var(--gold);
+        border-radius: 14px;
+        background: #07121f;
+        box-shadow: 0 25px 80px rgba(0, 0, 0, 0.65);
+    }
+
+    .modal-content[hidden] {
+        display: none;
+    }
+
+    .modal-close,
+    .modal-nav {
+        position: fixed;
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        background: rgba(7, 18, 31, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.45);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        transition: 0.25s;
+    }
+
+    .modal-close:hover,
+    .modal-nav:hover {
+        color: var(--bg);
+        background: var(--gold);
+    }
+
+    .modal-close {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        font-size: 1.1rem;
+    }
+
+    .modal-nav {
+        top: 50%;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        font-size: 0.95rem;
+        transform: translateY(-50%);
+    }
+
+    .modal-nav:hover {
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    .modal-prev {
+        left: 8px;
+    }
+
+    .modal-next {
+        right: 8px;
+    }
+
+    .modal-counter {
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        z-index: 10001;
+        padding: 5px 12px;
+        color: var(--muted);
+        background: rgba(7, 18, 31, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50px;
+        font-size: 0.75rem;
+    }
+
+    .modal-title {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        z-index: 10001;
+        max-width: 80%;
+        padding: 6px 16px;
+        color: var(--gold);
+        background: rgba(7, 18, 31, 0.88);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 50px;
+        font-size: clamp(0.7rem, 0.9vw, 0.9rem);
+        font-weight: 700;
+        text-align: center;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .modal-loading,
+    .modal-error {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        z-index: 10002;
+        transform: translate(-50%, -50%);
+    }
+
+    .modal-loading {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        color: #ffffff;
+        background: rgba(7, 18, 31, 0.9);
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        border-radius: 50px;
+        font-size: 0.85rem;
+    }
+
+    .modal-error {
+        max-width: 350px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        color: #ffffff;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        text-align: center;
+        display: none !important;
+    }
+
+    .modal-error i {
+        color: var(--gold);
+        font-size: 2.5rem;
+    }
+
+    .modal-error span {
+        color: var(--muted);
+        font-size: 0.75rem;
+        word-break: break-word;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr;
+        gap: 25px;
+    }
+
+    .contact-form {
+        padding: 20px;
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        display: block;
+        width: 100%;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+        color: #ffffff;
+        background: var(--panel-secondary);
+        border: 1px solid #2a4b6e;
+        border-radius: 12px;
+        outline: none;
+        transition: 0.25s;
+        font-size: clamp(0.85rem, 1vw, 0.95rem);
+    }
+
+    .contact-form textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.08);
+    }
+
+    .contact-submit {
+        padding: 12px 22px;
+        border: 0;
+        border-radius: 50px;
+        background: var(--gold);
+        color: var(--bg);
+        font-weight: 800;
+        transition: 0.25s;
+        font-size: clamp(0.85rem, 1vw, 0.95rem);
+    }
+
+    .contact-submit:hover {
+        background: var(--gold-light);
+        transform: translateY(-2px);
+    }
+
+    .contact-info {
+        padding: 10px;
+    }
+
+    .contact-info p {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin: 12px 0;
+        color: var(--muted);
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+    }
+
+    .contact-info i {
+        width: 22px;
+        margin-top: 3px;
+        flex-shrink: 0;
+        color: var(--gold);
+        text-align: center;
+        font-size: 0.95rem;
+    }
+
+    .contact-info a {
+        color: var(--muted);
+        text-decoration: none;
+        word-break: break-word;
+        transition: 0.25s;
+    }
+
+    .contact-info a:hover {
+        color: var(--gold);
+    }
+
+    footer {
+        padding: 30px 0 16px;
+        text-align: center;
+        background: #07121f;
+        border-top: 2px solid var(--gold);
+    }
+
+    footer h3 {
+        margin-bottom: 4px;
+        color: var(--gold);
+        font-size: clamp(1rem, 1.8vw, 1.3rem);
+    }
+
+    footer p {
+        color: var(--muted);
+        font-size: clamp(0.8rem, 1vw, 0.95rem);
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin: 14px 0;
+    }
+
+    .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+        transition: 0.25s;
+        font-size: clamp(0.75rem, 0.9vw, 0.85rem);
+    }
+
+    .footer-links a:hover {
+        color: var(--gold);
+    }
+
+    .copyright {
+        opacity: 0.65;
+        font-size: clamp(0.7rem, 0.8vw, 0.85rem);
+    }
+
+    .toast {
+        position: fixed;
+        right: 12px;
+        bottom: 12px;
+        z-index: 100000;
+        max-width: 320px;
+        padding: 11px 14px;
+        color: #ffffff;
+        background: #13293f;
+        border: 1px solid var(--gold);
+        border-radius: 10px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(15px);
+        transition: 0.3s;
+        font-size: clamp(0.8rem, 0.9vw, 0.9rem);
+    }
+
+    .toast.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+        .nav-links {
+            gap: 10px;
+        }
+        .nav-links a {
+            font-size: 0.75rem;
+        }
+        .gallery-grid,
+        .project-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .football-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+        .football-media {
+            grid-column: 1 / -1;
+        }
+        .education-slide {
+            flex-basis: calc((100% - 15px) / 2);
+            min-height: 300px;
+        }
+        .slide-image {
+            width: 120px;
+            height: 120px;
+        }
+        .cover-image {
+            height: 200px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav .container {
+            position: relative;
+        }
+
+        .nav-links {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 0;
+            right: 0;
+            display: none;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0;
+            padding: 8px;
+            background: rgba(11, 26, 46, 0.98);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-links.open {
+            display: flex;
+        }
+
+        .nav-links li {
+            width: 100%;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 10px 12px;
+            font-size: 0.9rem;
+            border-radius: 6px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .hero .container,
+        .about-grid,
+        .skills-wrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 30px 0;
+            min-height: auto;
+        }
+
+        .hero-content p {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group {
+            justify-content: center;
+        }
+
+        .hero-image {
+            order: -1;
+            margin-bottom: 10px;
+        }
+
+        .profile-wrapper {
+            width: min(260px, 60vw);
+        }
+
+        .about-details {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .modal {
+            padding: 50px 8px 60px;
+        }
+
+        .modal-content {
+            max-width: 96vw;
+            max-height: 65vh;
+        }
+
+        .modal-close {
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            font-size: 1rem;
+        }
+
+        .modal-counter {
+            top: 12px;
+            left: 12px;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+        }
+
+        .modal-nav {
+            top: auto;
+            bottom: 50px;
+            width: 40px;
+            height: 40px;
+            transform: none;
+            font-size: 0.85rem;
+        }
+
+        .modal-nav:hover {
+            transform: scale(1.05);
+        }
+
+        .modal-prev {
+            left: 8px;
+        }
+
+        .modal-next {
+            right: 8px;
+        }
+
+        .modal-title {
+            bottom: 12px;
+            max-width: 85%;
+            font-size: 0.75rem;
+            padding: 5px 12px;
+        }
+
+        .football-images {
+            gap: 10px;
+        }
+
+        .football-img-circle {
+            width: 80px;
+            height: 80px;
+        }
+
+        .gallery-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .cover-image {
+            height: 170px;
+        }
+
+        .gallery-overlay {
+            padding: 12px;
+        }
+
+        .gallery-icon {
+            font-size: 1.6rem;
+        }
+
+        .category-name {
+            font-size: 0.95rem;
+        }
+
+        .photo-count {
+            font-size: 0.65rem;
+        }
+
+        .play-icon {
+            width: 44px;
+            height: 44px;
+            font-size: 1.1rem;
+        }
+
+        .card-footer {
+            min-height: 46px;
+            padding: 10px 12px;
+        }
+
+        .card-footer .label {
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            width: min(calc(100% - 16px), 480px);
+            padding: 0 4px;
+        }
+
+        section {
+            padding: 40px 0;
+        }
+
+        .hero .container {
+            gap: 15px;
+        }
+
+        .hero-content h1 {
+            font-size: 1.8rem;
+        }
+
+        .hero-content p {
+            font-size: 0.85rem;
+        }
+
+        .btn {
+            padding: 9px 14px;
+            font-size: 0.8rem;
+            min-height: 38px;
+        }
+
+        .profile-wrapper {
+            width: min(200px, 50vw);
+        }
+
+        .about-details {
+            grid-template-columns: 1fr;
+        }
+
+        .about-details span {
+            padding: 8px 10px;
+            font-size: 0.8rem;
+        }
+
+        .project-grid,
+        .gallery-grid,
+        .football-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .education-slide {
+            flex-basis: 100%;
+            min-height: 280px;
+        }
+
+        .slide-image {
+            width: 100px;
+            height: 100px;
+        }
+
+        .education-slide {
+            padding: 20px 16px;
+        }
+
+        .school-name {
+            font-size: 1.1rem;
+        }
+
+        .football-club,
+        .football-stats-box {
+            padding: 16px;
+        }
+
+        .football-club p {
+            font-size: 0.85rem;
+            padding: 4px 0;
+        }
+
+        .stat-item-blue .num {
+            font-size: 1.2rem;
+        }
+
+        .stat-item-blue {
+            padding: 8px;
+        }
+
+        .skills-wrapper {
+            gap: 25px;
+        }
+
+        .skill-bar {
+            margin: 10px 0;
+        }
+
+        .skill-tag {
+            padding: 5px 12px;
+            font-size: 0.75rem;
+        }
+
+        .card {
+            padding: 16px;
+        }
+
+        .project-card i {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .project-card h3 {
+            font-size: 0.95rem;
+        }
+
+        .project-card p {
+            font-size: 0.8rem;
+        }
+
+        .cover-image {
+            height: 200px;
+        }
+
+        .gallery-icon {
+            font-size: 1.8rem;
+        }
+
+        .category-name {
+            font-size: 1.05rem;
+        }
+
+        .play-icon {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+
+        .modal {
+            padding: 40px 6px 50px;
+        }
+
+        .modal-content {
+            max-width: 98vw;
+            max-height: 60vh;
+        }
+
+        .modal-close {
+            top: 8px;
+            right: 8px;
+            width: 32px;
+            height: 32px;
+            font-size: 0.85rem;
+        }
+
+        .modal-nav {
+            width: 36px;
+            height: 36px;
+            font-size: 0.75rem;
+            bottom: 40px;
+        }
+
+        .modal-prev {
+            left: 4px;
+        }
+
+        .modal-next {
+            right: 4px;
+        }
+
+        .modal-title {
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            bottom: 10px;
+            max-width: 90%;
+        }
+
+        .modal-counter {
+            font-size: 0.65rem;
+            padding: 3px 8px;
+            top: 10px;
+            left: 10px;
+        }
+
+        .contact-form {
+            padding: 16px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px 12px;
+            font-size: 0.85rem;
+        }
+
+        .contact-form textarea {
+            min-height: 100px;
+        }
+
+        .contact-info p {
+            font-size: 0.8rem;
+            margin: 8px 0;
+        }
+
+        .footer-links {
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 0.75rem;
+        }
+
+        .toast {
+            max-width: 90%;
+            padding: 10px 12px;
+            font-size: 0.8rem;
+            right: 5%;
+            bottom: 10px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            scroll-behavior: auto !important;
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .reveal,
+        .reveal-left,
+        .reveal-right,
+        .reveal-scale {
+            opacity: 1;
+            transform: none;
+        }
+
+        .gallery-card {
+            animation: none;
+        }
+
+        .ring {
+            animation: none;
+        }
+    }
+</style>
+</head>
+<body>
+    <a class="skip-link" href="#home">Skip to content</a>
+    <nav aria-label="Main navigation">
+        <div class="container">
+            <a href="#home" class="logo"><span>⚽</span>WELCOME TO MY PORTFOLIO</a>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false"><i class="fas fa-bars"></i></button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#football">Football</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Hi<br>I'm <span class="highlight">Mthetheleli Ndlovu</span></h1>
+                    <div class="iam">Information Technology Student</div>
+                    <div class="type-wrapper"><span class="typing-demo" id="typingText"></span></div>
+                    <p>Welcome to my personal portfolio. Explore my education, football journey, technical skills, projects and memories.</p>
+                    <div class="btn-group">
+                        <a href="#about" class="btn btn-primary"><i class="fas fa-user"></i>Learn More</a>
+                        <a href="files/Mthetheleli's CV.pdf" class="btn btn-outline" download="Mthetheleli_Ndlovu_CV.pdf"><i class="fas fa-file-arrow-down"></i>Download CV</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-wrapper">
+                        <div class="ring-glow"></div>
+                        <div class="ring"></div>
+                        <img src="images/g.jpeg" alt="Portrait of Mthetheleli Ndlovu" class="profile-pic" onerror="this.hidden = true; document.getElementById('profileFallback').style.display = 'flex';">
+                        <div class="profile-fallback" id="profileFallback" style="display:none;"><i class="fas fa-user"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title reveal">About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text reveal-left">
+                        <p>I was born on <strong>12 September 2005</strong> at Church of Scotland Hospital, located in Tugela Ferry, KwaZulu-Natal, where I also grew up. From a young age I developed a passion for technology, sports and continuous learning.</p>
+                        <p>I am currently studying Information Technology, specializing in Internet of Things (IoT) at Durban University of Technology. My goal is to become a professional software developer and IoT engineer while continuing to grow in football.</p>
+                        <div class="about-details">
+                            <span><i class="fas fa-calendar-alt"></i>12 Sept 2005</span>
+                            <span><i class="fas fa-flag"></i>South African</span>
+                            <span><i class="fas fa-map-marker-alt"></i>Tugela Ferry, KZN</span>
+                            <span><i class="fas fa-language"></i>English, Zulu</span>
+                            <span><i class="fas fa-bullseye"></i>IoT Engineer</span>
+                            <span><i class="fas fa-futbol"></i>Football, Coding</span>
+                        </div>
+                    </div>
+                    <div class="about-image-wrapper reveal-right">
+                        <img src="images/s.jpeg" alt="Mthetheleli Ndlovu" class="about-avatar" loading="lazy" onerror="this.hidden = true; document.getElementById('avatarFallback').style.display = 'flex';">
+                        <div class="avatar-fallback" id="avatarFallback" style="display:none;"><i class="fas fa-user-graduate"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title section-title-center reveal">Education</h2>
+                <p class="reveal" style="text-align:center;color:var(--muted);margin-bottom:20px;font-size:clamp(0.8rem,1vw,0.95rem);">Use the buttons or swipe to navigate through my education journey.</p>
+                <div class="education-carousel reveal-scale" id="educationCarousel">
+                    <div class="education-track" id="educationTrack">
+                        <article class="education-slide slide-sinqumeni">
+                            <div class="slide-content">
+                                <div class="year">2012 – 2018</div>
+                                <div class="school-name">Sinqumeni Primary School</div>
+                                <div class="school-desc">Primary Education</div>
+                                <img src="images/21.jpg" alt="Sinqumeni Primary School" class="slide-image" loading="lazy">
+                            </div>
+                        </article>
+                        <article class="education-slide slide-mabaso">
+                            <div class="slide-content">
+                                <div class="year">2019 – 2023</div>
+                                <div class="school-name">Mabaso Secondary School</div>
+                                <div class="school-desc">Secondary Education</div>
+                                <img src="images/m.jpg" alt="Mabaso Secondary School" class="slide-image" loading="lazy">
+                            </div>
+                        </article>
+                        <article class="education-slide slide-university">
+                            <div class="slide-content">
+                                <div class="year">2024 – Present</div>
+                                <div class="school-name">Durban University of Technology</div>
+                                <div class="school-desc">Information Technology (IoT)</div>
+                                <img src="images/o.jpg" alt="Durban University of Technology" class="slide-image" loading="lazy">
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="carousel-nav">
+                    <button class="carousel-btn" id="prevBtn" type="button" aria-label="Previous education"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-btn" id="nextBtn" type="button" aria-label="Next education"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="carousel-dots" id="dotsContainer" aria-label="Education slides"></div>
+            </div>
+        </section>
+        <section id="football">
+            <div class="container">
+                <h2 class="section-title reveal">Football</h2>
+                <div class="football-grid">
+                    <div class="football-club reveal-left">
+                        <h3><i class="fas fa-futbol"></i>Club Information</h3>
+                        <p><i class="fas fa-trophy"></i><strong>Club:</strong> Umsinga United Development</p>
+                        <p><i class="fas fa-user"></i><strong>Position:</strong> Winger · Attacking Midfielder</p>
+                        <p><i class="fas fa-shoe-prints"></i><strong>Strong Foot:</strong> Right</p>
+                        <p><i class="fas fa-hashtag"></i><strong>Favourite Number:</strong> 7</p>
+                        <p><i class="fas fa-bolt"></i><strong>Style:</strong> Fast · Creative · Dribbling · Passing</p>
+                    </div>
+                    <div class="football-stats-box reveal-scale">
+                        <h3><i class="fas fa-chart-bar"></i>Statistics</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item-blue"><div class="num">24</div><div class="label">Matches</div></div>
+                            <div class="stat-item-blue"><div class="num">11</div><div class="label">Goals</div></div>
+                            <div class="stat-item-blue"><div class="num">8</div><div class="label">Assists</div></div>
+                            <div class="stat-item-blue"><div class="num">5</div><div class="label">MOM</div></div>
+                            <div class="stat-item-blue"><div class="num">92%</div><div class="label">Speed</div></div>
+                            <div class="stat-item-blue"><div class="num">88%</div><div class="label">Passing</div></div>
+                        </div>
+                    </div>
+                    <article class="football-media reveal-right">
+                        <div class="football-images">
+                            <img src="images/u.jpg" alt="Mthetheleli on the football field" class="football-img-circle" loading="lazy">
+                            <img src="images/i.jpg" alt="Mthetheleli action shot" class="football-img-circle" loading="lazy">
+                        </div>
+                        <div class="football-video-box">
+                            <video controls preload="metadata" playsinline>
+                                <source src="videos/Dural1.mp4" type="video/mp4">
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section id="skills">
+            <div class="container">
+                <h2 class="section-title section-title-center reveal">Skills</h2>
+                <div class="skills-wrapper">
+                    <div>
+                        <h3 class="reveal" style="color:var(--gold);">Programming</h3>
+                        <div class="skill-bar reveal" data-percent="95"><div class="skill-label"><span>HTML</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="90"><div class="skill-label"><span>CSS</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="85"><div class="skill-label"><span>JavaScript</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="90"><div class="skill-label"><span>Python</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="85"><div class="skill-label"><span>C#</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="85"><div class="skill-label"><span>SQL</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="80"><div class="skill-label"><span>C++</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                        <div class="skill-bar reveal" data-percent="80"><div class="skill-label"><span>Kotlin</span><span class="percent-text">0%</span></div><div class="bar"><div class="bar-fill"></div></div></div>
+                    </div>
+                    <div>
+                        <h3 class="reveal" style="color:var(--gold);">Other Skills</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag reveal-scale">Networking</span>
+                            <span class="skill-tag reveal-scale">Database Design</span>
+                            <span class="skill-tag reveal-scale">Web Development</span>
+                            <span class="skill-tag reveal-scale">Problem Solving</span>
+                            <span class="skill-tag reveal-scale">IoT Development</span>
+                            <span class="skill-tag reveal-scale">MS Office</span>
+                            <span class="skill-tag reveal-scale">Teamwork</span>
+                            <span class="skill-tag reveal-scale">Leadership</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title section-title-center reveal">Projects</h2>
+                <div class="project-grid">
+                    <article class="card project-card reveal-scale"><i class="fas fa-microchip"></i><h3>IoT Supply Chain Tracker</h3><p>GPS · ESP32 · Temperature/Humidity · Live Dashboard</p></article>
+                    <article class="card project-card reveal-scale"><i class="fas fa-paw"></i><h3>Pet Grooming Website</h3><p>Online Booking · Admin · Reviews</p></article>
+                    <article class="card project-card reveal-scale"><i class="fas fa-shopping-cart"></i><h3>E-commerce Website</h3><p>PHP · MySQL · Cart · Payment</p></article>
+                </div>
+            </div>
+        </section>
+        <section id="gallery">
+            <div class="container">
+                <h2 class="section-title section-title-center reveal">Photo Gallery</h2>
+                <p class="gallery-intro reveal">Click a category to open its photos.</p>
+                <div class="gallery-grid" id="galleryGrid"></div>
+                <div class="gallery-status" id="galleryStatus">Loading gallery...</div>
+            </div>
+        </section>
+        <div class="modal" id="lightboxModal" role="dialog" aria-modal="true" aria-label="Photo gallery" aria-hidden="true">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Close gallery"><i class="fas fa-times"></i></button>
+            <div class="modal-counter" id="modalCounter">1 / 1</div>
+            <button class="modal-nav modal-prev" id="modalPrev" type="button" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+            <button class="modal-nav modal-next" id="modalNext" type="button" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+            <div class="modal-loading" id="modalLoading"><i class="fas fa-spinner fa-spin"></i>Loading image...</div>
+            <img class="modal-content" id="modalImage" src="" alt="">
+            <div class="modal-title" id="modalTitle"></div>
+        </div>
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title reveal">Contact</h2>
+                <div class="contact-grid">
+                    <form class="contact-form reveal-left" id="contactForm">
+                        <input id="contactName" name="name" type="text" placeholder="Full Name" autocomplete="name" required>
+                        <input id="contactEmail" name="email" type="email" placeholder="Email Address" autocomplete="email" required>
+                        <input id="contactSubject" name="subject" type="text" placeholder="Subject" required>
+                        <textarea id="contactMessage" name="message" placeholder="Message" required></textarea>
+                        <button class="contact-submit" type="submit"><i class="fas fa-paper-plane"></i>Send Message</button>
+                    </form>
+                    <div class="contact-info reveal-right">
+                        <p><i class="fas fa-phone"></i><a href="tel:+27722021793">+27 72 2021 793</a></p>
+                        <p><i class="fas fa-envelope"></i><a href="mailto:mthethelelin77@gmail.com">mthethelelin77@gmail.com</a></p>
+                        <p><i class="fas fa-map-pin"></i><span>Tugela Ferry, KZN</span></p>
+                        <p><i class="fab fa-github"></i><a href="https://github.com/maDural" target="_blank" rel="noopener noreferrer">github.com/maDural</a></p>
+                        <p><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/mthetheleli-ndlovu-47bb24384/" target="_blank" rel="noopener noreferrer">linkedin.com/in/mthetheleli-ndlovu</a></p>
+                        <p><i class="fab fa-facebook"></i><a href="https://web.facebook.com/ma.dura.3110" target="_blank" rel="noopener noreferrer">facebook.com/ma.dura.3110</a></p>
+                        <p><i class="fab fa-instagram"></i><a href="https://www.instagram.com/ma_dura7/" target="_blank" rel="noopener noreferrer">@ma_dura7</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="copyright">Copyright © 2026 · All rights reserved</div>
+        </div>
+    </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            "use strict";
+            const menuToggle = document.getElementById("menuToggle");
+            const navLinks = document.getElementById("navLinks");
+
+            function closeMenu() {
+                if (!navLinks || !menuToggle) return;
+                navLinks.classList.remove("open");
+                menuToggle.setAttribute("aria-expanded", "false");
+                menuToggle.setAttribute("aria-label", "Open navigation");
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener("click", function() {
+                    const isOpen = navLinks.classList.toggle("open");
+                    menuToggle.setAttribute("aria-expanded", String(isOpen));
+                    menuToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+                    menuToggle.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+                });
+                navLinks.querySelectorAll("a").forEach(function(link) {
+                    link.addEventListener("click", closeMenu);
+                });
+            }
+            const typingText = document.getElementById("typingText");
+            const typingWords = ["IoT Developer", "Football Player", "Winger", "Attacking Midfielder"];
+            let wordIndex = 0,
+                charIndex = 0,
+                deleting = false;
+
+            function typeLoop() {
+                if (!typingText) return;
+                const word = typingWords[wordIndex];
+                typingText.textContent = word.slice(0, charIndex);
+                if (!deleting) {
+                    charIndex++;
+                    if (charIndex > word.length) {
+                        deleting = true;
+                        setTimeout(typeLoop, 1700);
+                        return;
+                    }
+                    setTimeout(typeLoop, 85);
+                } else {
+                    charIndex--;
+                    if (charIndex < 0) {
+                        charIndex = 0;
+                        deleting = false;
+                        wordIndex = (wordIndex + 1) % typingWords.length;
+                        setTimeout(typeLoop, 350);
+                        return;
+                    }
+                    setTimeout(typeLoop, 50);
+                }
+            }
+            typeLoop();
+            const revealItems = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+            const skillsSection = document.getElementById("skills");
+            let skillsStarted = false;
+
+            function isElementVisible(element) {
+                const rect = element.getBoundingClientRect();
+                return (rect.top < window.innerHeight * 0.88 && rect.bottom > 0);
+            }
+
+            function revealOnScroll() {
+                revealItems.forEach(function(element) {
+                    if (isElementVisible(element)) {
+                        element.classList.add("active");
+                    }
+                });
+                if (!skillsStarted && skillsSection && isElementVisible(skillsSection)) {
+                    skillsStarted = true;
+                    const skillBars = document.querySelectorAll(".skill-bar");
+                    skillBars.forEach(function(bar) {
+                        const percent = parseInt(bar.dataset.percent, 10);
+                        const fill = bar.querySelector(".bar-fill");
+                        const text = bar.querySelector(".percent-text");
+                        if (!fill || !text) return;
+                        let current = 0;
+                        const step = Math.max(1, Math.ceil(percent / 40));
+                        const timer = setInterval(function() {
+                            current += step;
+                            if (current >= percent) {
+                                current = percent;
+                                clearInterval(timer);
+                            }
+                            fill.style.width = current + "%";
+                            text.textContent = current + "%";
+                        }, 25);
+                    });
+                }
+            }
+            window.addEventListener("scroll", revealOnScroll, { passive: true });
+            window.addEventListener("resize", revealOnScroll);
+            setTimeout(revealOnScroll, 200);
+            const track = document.getElementById("educationTrack");
+            const carousel = document.getElementById("educationCarousel");
+            const slides = track ? Array.from(track.querySelectorAll(".education-slide")) : [];
+            const prevBtn = document.getElementById("prevBtn");
+            const nextBtn = document.getElementById("nextBtn");
+            const dotsContainer = document.getElementById("dotsContainer");
+            let educationIndex = 0,
+                educationTimer = null,
+                educationTouchStart = 0;
+
+            function visibleSlides() {
+                if (window.innerWidth <= 600) return 1;
+                if (window.innerWidth <= 1024) return 2;
+                return 3;
+            }
+
+            function createEducationDots() {
+                if (!dotsContainer || !slides.length) return;
+                dotsContainer.innerHTML = "";
+                slides.forEach(function(_, index) {
+                    const dot = document.createElement("button");
+                    dot.type = "button";
+                    dot.className = "carousel-dot";
+                    dot.setAttribute("aria-label", `Go to education slide ${index + 1}`);
+                    dot.addEventListener("click", function() { updateEducation(index, true); });
+                    dotsContainer.appendChild(dot);
+                });
+            }
+
+            function updateEducation(index, userAction = false) {
+                if (!track || !slides.length) return;
+                const visible = visibleSlides();
+                const maxIndex = Math.max(0, slides.length - visible);
+                educationIndex = Math.max(0, Math.min(index, maxIndex));
+                const slideWidth = slides[0].getBoundingClientRect().width;
+                const gap = 15;
+                track.style.transform = `translateX(-${educationIndex * (slideWidth + gap)}px)`;
+                if (dotsContainer) {
+                    Array.from(dotsContainer.children).forEach(function(dot, dotIndex) {
+                        dot.classList.toggle("active", dotIndex === educationIndex);
+                    });
+                }
+                if (userAction) restartEducationAutoplay();
+            }
+
+            function nextEducation() {
+                if (!slides.length) return;
+                const maxIndex = Math.max(0, slides.length - visibleSlides());
+                updateEducation(educationIndex >= maxIndex ? 0 : educationIndex + 1);
+            }
+
+            function prevEducation() {
+                if (!slides.length) return;
+                const maxIndex = Math.max(0, slides.length - visibleSlides());
+                updateEducation(educationIndex <= 0 ? maxIndex : educationIndex - 1);
+            }
+
+            function restartEducationAutoplay() {
+                clearInterval(educationTimer);
+                educationTimer = setInterval(nextEducation, 5000);
+            }
+            if (track && slides.length) {
+                createEducationDots();
+                updateEducation(0);
+                restartEducationAutoplay();
+                if (prevBtn) prevBtn.addEventListener("click", prevEducation);
+                if (nextBtn) nextBtn.addEventListener("click", nextEducation);
+                if (carousel) {
+                    carousel.addEventListener("mouseenter", function() { clearInterval(educationTimer); });
+                    carousel.addEventListener("mouseleave", function() { restartEducationAutoplay(); });
+                    carousel.addEventListener("touchstart", function(event) {
+                        educationTouchStart = event.changedTouches[0].screenX;
+                        clearInterval(educationTimer);
+                    }, { passive: true });
+                    carousel.addEventListener("touchend", function(event) {
+                        const end = event.changedTouches[0].screenX;
+                        const distance = end - educationTouchStart;
+                        if (Math.abs(distance) > 45) {
+                            distance < 0 ? nextEducation() : prevEducation();
+                        }
+                        restartEducationAutoplay();
+                    }, { passive: true });
+                }
+                window.addEventListener("resize", function() { updateEducation(educationIndex); });
+            }
+            const galleryData = {
+                "Football": {
+                    icon: "⚽",
+                    cover: "images/q.jpg",
+                    images: [
+                        { src: "images/1737798048031.jpg", title: "    " },
+                        { src: "images/FB_IMG_1770039467889.jpg", title: "    " },
+                        { src: "images/IMG-20240104-WA0053.jpg", title: "    " },
+                        { src: "images/u.jpg", title: "    " },
+                        { src: "images/IMG-20240813-WA0012.jpg", title: "    " },
+                        { src: "images/IMG-20240813-WA0022.jpg", title: "    " },
+                        { src: "images/Screenshot_20231117-230623.jpg", title: "    " },
+                        { src: "images/y.jpg", title: "    " },
+                        { src: "images/IMG-20240813-WA0024.jpg", title: "    " },
+                        { src: "images/i.jpg", title: "    " },
+                        { src: "images/ba.jpg", title: "    " },
+                        { src: "images/y.jpg", title: "    " },
+                        { src: "images/y.jpg", title: "    " },
+                        { src: "images/Screenshot_20231117-230638.jpg", title: "    " }
+                    ]
+                },
+                "Friends": {
+                    icon: "👥",
+                    cover: "images/1.jpg",
+                    images: [
+                        { src: "images/2.jpg", title: "    " },
+                        { src: "images/3.jpg", title: "    " },
+                        { src: "images/4.jpg", title: "    " },
+                        { src: "images/5.jpg", title: "    " },
+                        { src: "images/17.jpg", title: "    " },
+                        { src: "images/18.jpg", title: "    " },
+                        { src: "images/29.jpg", title: "    " },
+                        { src: "images/aa.jpg", title: "    " }
+                    ]
+                },
+                "Family": {
+                    icon: "👨‍👩‍👧‍👦",
+                    cover: "images/11.jpg",
+                    images: [
+                        { src: "images/9.jpg", title: "    " },
+                        { src: "images/12.jpg", title: "    " },
+                        { src: "images/13.jpg", title: "    " },
+                        { src: "images/14.jpg", title: "    " },
+                        { src: "images/13.jpg", title: "    " },
+                        { src: "images/23.jpg", title: "    " },
+                        { src: "images/24.jpg", title: "    " },
+                        { src: "images/31.jpg", title: "    " }
+                    ]
+                },
+                "Only Me": {
+                    icon: "👤",
+                    cover: "images/o.jpg",
+                    images: [
+                        { src: "images/k.jpeg", title: "    " },
+                        { src: "images/w.jpg", title: "    " },
+                        { src: "images/r.jpg", title: "    " },
+                        { src: "images/p.jpg", title: "    " },
+                        { src: "images/bb.jpg", title: "    " },
+                        { src: "images/0.jpg", title: "    " },
+                        { src: "images/f.jpeg", title: "    " },
+                        { src: "images/e.jpg", title: "    " },
+                        { src: "images/d.jpeg", title: "    " },
+                        { src: "images/ab.jpg", title: "    " },
+                        { src: "images/t.jpg", title: "    " }
+                    ]
+                },
+                "Memories": {
+                    icon: "🏫",
+                    cover: "images/a.jpg",
+                    images: [
+                        { src: "images/16.jpg", title: "    " },
+                        { src: "images/20.jpg", title: "    " },
+                        { src: "images/28.jpg", title: "    " },
+                        { src: "images/21.jpg", title: "    " },
+                        { src: "images/26.jpg", title: "    " },
+                        { src: "images/27.jpg", title: "    " },
+                        { src: "images/17.jpg", title: "    " },
+                        { src: "images/19.jpg", title: "    " }
+                    ]
+                }
+            };
+
+            const galleryGrid = document.getElementById("galleryGrid");
+            const galleryStatus = document.getElementById("galleryStatus");
+            const modal = document.getElementById("lightboxModal");
+            const modalImage = document.getElementById("modalImage");
+            const modalTitle = document.getElementById("modalTitle");
+            const modalCounter = document.getElementById("modalCounter");
+            const modalClose = document.getElementById("modalClose");
+            const modalPrev = document.getElementById("modalPrev");
+            const modalNext = document.getElementById("modalNext");
+            const modalLoading = document.getElementById("modalLoading");
+            let currentImages = [],
+                currentImageIndex = 0,
+                lastFocusedElement = null,
+                galleryTouchStart = 0;
+
+            function normalizeImagePath(path) {
+                if (!path) return "";
+                return String(path).replace(/^\.\/+/, "").replace(/^\/+/, "");
+            }
+
+            function escapeHtml(value) {
+                return String(value).replace(/[&<>"']/g, function(character) {
+                    const entities = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" };
+                    return entities[character];
+                });
+            }
+
+            function createFallback(category) {
+                const fallback = document.createElement("div");
+                fallback.className = "cover-fallback";
+                fallback.innerHTML = `<i class="fas fa-image"></i><strong>${escapeHtml(category)}</strong><small>Cover image unavailable</small>`;
+                return fallback;
+            }
+
+            function setupCoverImage(image, cover, data, category) {
+                let fallbackAttempted = false;
+                image.addEventListener("error", function() {
+                    if (!fallbackAttempted && data.images.length > 0) {
+                        fallbackAttempted = true;
+                        const firstImage = normalizeImagePath(data.images[0].src);
+                        if (firstImage && firstImage !== normalizeImagePath(data.cover)) {
+                            image.src = firstImage;
+                            return;
+                        }
+                    }
+                    image.style.display = "none";
+                    if (!cover.querySelector(".cover-fallback")) {
+                        cover.appendChild(createFallback(category));
+                    }
+                });
+                image.addEventListener("load", function() {
+                    if (image.naturalWidth === 0 || image.naturalHeight === 0) {
+                        image.style.display = "none";
+                        if (!cover.querySelector(".cover-fallback")) {
+                            cover.appendChild(createFallback(category));
+                        }
+                    }
+                });
+            }
+
+            function createGallery() {
+                if (!galleryGrid) return;
+                galleryGrid.innerHTML = "";
+                const categories = Object.entries(galleryData);
+                if (!categories.length) {
+                    if (galleryStatus) galleryStatus.textContent = "No gallery categories available.";
+                    return;
+                }
+                categories.forEach(function(entry, index) {
+                    const category = entry[0];
+                    const data = entry[1];
+                    const card = document.createElement("article");
+                    card.className = "gallery-card";
+                    card.tabIndex = 0;
+                    card.setAttribute("role", "button");
+                    card.setAttribute("aria-label", `Open ${category} photo gallery`);
+                    card.style.animationDelay = `${index * 80}ms`;
+                    const cover = document.createElement("div");
+                    cover.className = "cover-image";
+                    const image = document.createElement("img");
+                    const coverPath = normalizeImagePath(data.cover || (data.images.length ? data.images[0].src : ""));
+                    image.src = coverPath;
+                    image.alt = `${category} gallery cover`;
+                    image.loading = index < 3 ? "eager" : "lazy";
+                    image.decoding = "async";
+                    setupCoverImage(image, cover, data, category);
+                    cover.appendChild(image);
+                    const overlay = document.createElement("div");
+                    overlay.className = "gallery-overlay";
+                    overlay.innerHTML = `<span class="gallery-icon">${data.icon}</span><span class="category-name">${escapeHtml(category)}</span><span class="photo-count">${data.images.length} ${data.images.length === 1 ? "photo" : "photos"}</span>`;
+                    cover.appendChild(overlay);
+                    const playIcon = document.createElement("div");
+                    playIcon.className = "play-icon";
+                    playIcon.innerHTML = '<i class="fas fa-circle-play"></i>';
+                    cover.appendChild(playIcon);
+                    const footer = document.createElement("div");
+                    footer.className = "card-footer";
+                    footer.innerHTML = `<span class="label">${escapeHtml(category)}</span><span class="badge">${data.images.length}</span>`;
+                    card.appendChild(cover);
+                    card.appendChild(footer);
+                    card.addEventListener("click", function() { openGallery(category); });
+                    card.addEventListener("keydown", function(event) {
+                        if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            openGallery(category);
+                        }
+                    });
+                    galleryGrid.appendChild(card);
+                });
+                if (galleryStatus) galleryStatus.classList.add("hidden");
+            }
+
+            function openGallery(category) {
+                const data = galleryData[category];
+                if (!data || !Array.isArray(data.images) || !data.images.length) {
+                    showToast(`No photos found for ${category}.`);
+                    return;
+                }
+                lastFocusedElement = document.activeElement;
+                currentImages = data.images;
+                currentImageIndex = 0;
+                modal.classList.add("active");
+                modal.setAttribute("aria-hidden", "false");
+                document.body.classList.add("modal-open");
+                showGalleryImage(0);
+                if (modalClose) modalClose.focus();
+            }
+
+            function showGalleryImage(index) {
+                if (!currentImages.length) return;
+                if (index < 0) index = currentImages.length - 1;
+                if (index >= currentImages.length) index = 0;
+                currentImageIndex = index;
+                const imageData = currentImages[index];
+                const src = normalizeImagePath(imageData.src);
+                const title = imageData.title || `Image ${index + 1}`;
+                
+                modalImage.hidden = false;
+                modalLoading.style.display = "flex";
+                
+                modalImage.onload = function() {
+                    modalLoading.style.display = "none";
+                    modalImage.hidden = false;
+                    modalTitle.textContent = title;
+                };
+                
+                modalImage.onerror = function() {
+                    modalLoading.style.display = "none";
+                    modalImage.hidden = true;
+                    // Show placeholder instead of error
+                    modalTitle.innerHTML = `
+                        <div style="text-align:center;padding:20px;color:var(--gold);">
+                            <i class="fas fa-image" style="font-size:3rem;display:block;margin-bottom:10px;"></i>
+                            <strong>${title}</strong>
+                            <br>
+                            <small style="color:var(--muted);">Image not available</small>
+                        </div>
+                    `;
+                };
+                
+                modalImage.src = src;
+                modalImage.alt = title;
+                modalTitle.textContent = title;
+                modalCounter.textContent = `${index + 1} / ${currentImages.length}`;
+            }
+
+            function closeGallery() {
+                modal.classList.remove("active");
+                modal.setAttribute("aria-hidden", "true");
+                document.body.classList.remove("modal-open");
+                modalImage.removeAttribute("src");
+                modalImage.hidden = false;
+                modalTitle.textContent = "";
+                if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+                    lastFocusedElement.focus();
+                }
+            }
+
+            function showPrevious() { showGalleryImage(currentImageIndex - 1); }
+
+            function showNext() { showGalleryImage(currentImageIndex + 1); }
+            if (modalClose) modalClose.addEventListener("click", closeGallery);
+            if (modalPrev) modalPrev.addEventListener("click", showPrevious);
+            if (modalNext) modalNext.addEventListener("click", showNext);
+            if (modal) {
+                modal.addEventListener("click", function(event) { if (event.target === modal) closeGallery(); });
+                modal.addEventListener("touchstart", function(event) { galleryTouchStart = event.changedTouches[0].screenX; }, { passive: true });
+                modal.addEventListener("touchend", function(event) {
+                    const end = event.changedTouches[0].screenX;
+                    const distance = end - galleryTouchStart;
+                    if (Math.abs(distance) > 50) {
+                        distance < 0 ? showNext() : showPrevious();
+                    }
+                }, { passive: true });
+            }
+            document.addEventListener("keydown", function(event) {
+                if (!modal || !modal.classList.contains("active")) return;
+                if (event.key === "Escape") { event.preventDefault();
+                    closeGallery(); return; }
+                if (event.key === "ArrowLeft") { event.preventDefault();
+                    showPrevious(); return; }
+                if (event.key === "ArrowRight") { event.preventDefault();
+                    showNext(); return; }
+                if (event.key === "Tab") {
+                    const focusable = [modalClose, modalPrev, modalNext].filter(Boolean);
+                    if (focusable.length < 2) return;
+                    const first = focusable[0];
+                    const last = focusable[focusable.length - 1];
+                    if (event.shiftKey && document.activeElement === first) { event.preventDefault();
+                        last.focus(); } else if (!event.shiftKey && document.activeElement === last) { event.preventDefault();
+                        first.focus(); }
+                }
+            });
+            const contactForm = document.getElementById("contactForm");
+            if (contactForm) {
+                contactForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    const name = document.getElementById("contactName").value.trim();
+                    const email = document.getElementById("contactEmail").value.trim();
+                    const subject = document.getElementById("contactSubject").value.trim();
+                    const message = document.getElementById("contactMessage").value.trim();
+                    if (!name || !email || !subject || !message) { showToast("Please complete all fields."); return; }
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(email)) { showToast("Please enter a valid email address."); return; }
+                    const mailto = "mailto:mthethelelin77@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+                    showToast("Opening your email application...");
+                    window.location.href = mailto;
+                    contactForm.reset();
+                });
+            }
+            const sections = Array.from(document.querySelectorAll("main section[id]"));
+            const navAnchors = Array.from(document.querySelectorAll(".nav-links a"));
+            if ("IntersectionObserver" in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            navAnchors.forEach(function(anchor) {
+                                anchor.classList.toggle("active", anchor.getAttribute("href") === "#" + entry.target.id);
+                            });
+                        }
+                    });
+                }, { rootMargin: "-35% 0px -55% 0px" });
+                sections.forEach(function(section) { observer.observe(section); });
+            }
+
+            function showToast(message) {
+                const toast = document.getElementById("toast");
+                if (!toast) return;
+                toast.textContent = message;
+                toast.classList.add("show");
+                clearTimeout(window.__toastTimer);
+                window.__toastTimer = setTimeout(function() { toast.classList.remove("show"); }, 3500);
+            }
+            createGallery();
+            revealOnScroll();
+        });
+    </script>
+</body>
+</html>
